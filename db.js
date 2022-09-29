@@ -7,4 +7,4 @@ const db=mysql.createConnection({
     database:"company_webpage"
 })
 
-module.exports = {db};
+module.exports = db;
