@@ -13,7 +13,21 @@ async function signupModel(email,password,name){
         await db.close();
       }
 }
-module.exports=signupModel
+
+async function LoginModel(email,password){
+  const db=makeDb()
+    console.log("signup model")
+    try{
+        let loginModel=await db.query("SELECT * FROM signup WHERE email=? AND password=?",[email,password])
+        return loginModel
+
+    }catch(err){
+        return false
+    }finally {
+        await db.close();
+      }
+}
+module.exports={  signupModel,LoginModel}
 
 
 // const makeDb = require('../db');
