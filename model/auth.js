@@ -1,33 +1,58 @@
 const {makeDb} = require("../db")
 console.log("model.")
 async function signupModel(email,password,name){
+console.log("model IN")
   const db=makeDb()
-    console.log("signup model")
+    console.log("signup model values ##",email,password,name)
     try{
-        let signupM=await db.query("INSERT INTO signup(email,password,name)values(?,?,?)",[email,password,name])
-        return true
-
-    }catch(err){
-        console.log("Error:-",err)
-    }finally {
-        await db.close();
-      }
-}
-
-async function LoginModel(email,password){
-  const db=makeDb()
-    console.log("signup model")
-    try{
-        let loginModel=await db.query("SELECT * FROM signup WHERE email=? AND password=?",[email,password])
-        return loginModel
-
+        // let signup_exist=await db.query("SELECT * FROM signup WHERE email=?",[email])
+        // console.log("signup_exist",signup_exist.length);
+        // if(signup_exist.length < 1){
+          // console.log("value not exist in the signup");
+          let signupM=await db.query("INSERT INTO signup(email,password,name)values(?,?,?)",[email,password,name])
+          console.log("signup unique",signupM)
+          return signupM
+        // }
+        // else{
+        //   console.log("value All ready exist in the signup");
+        //   return false
+        // }
     }catch(err){
         return false
     }finally {
         await db.close();
       }
 }
-module.exports={  signupModel,LoginModel}
+
+async function signupExist(email){
+  console.log("signupExist IN email:-",email)
+  const db=makeDb()
+  try{
+    let signup_exist=await db.query("SELECT * FROM signup WHERE email=?",[email])
+    console.log("exist same value- model")
+    return signup_exist
+  }
+  catch(err){
+    console.log("not same value- model")
+    return false
+  }finally {
+    await db.close();
+  }
+}
+
+async function LoginModel(email,password){
+  const db=makeDb()
+    console.log("Login model")
+    try{
+        let loginModel=await db.query("SELECT * FROM signup WHERE email=? AND password=?",[email,password])
+        return loginModel
+    }catch(err){
+        return false
+    }finally {
+        await db.close();
+      }
+}
+module.exports={  signupModel,LoginModel,signupExist}
 
 
 // const makeDb = require('../db');
