@@ -1,4 +1,6 @@
 const {signupModel,signupExist,LoginModel} = require('../model/auth');
+const jwt = require('jsonwebtoken')
+// const {verifyToken}=require('../middleware/loginMiddleware')
 console.log('controller.js');
 async function signupController(req, res) {
   console.log('signup controller  IN');
@@ -36,21 +38,28 @@ async function signupController(req, res) {
 }
 
 async function LoginController(req, res) {
-  console.log('Login data');
+  console.log('Login_contrlr IN');
   try {
     let email = req.body.email;
     let password = req.body.password;
-    console.log('controller data Login', email, password);
+    console.log('Login_contrlr data', email, password);
     if ((!email)||(!password) ) {
+      console.log('Login_contrlr if_value_nil', email, password);
             return res.status(400).json({ success: false, message: 'Field not Filled' });
           }else{
-          console.log('controller data Login', email, password);
+          console.log('Login_contrlr if_value', email, password);
           const login_result = await LoginModel(email, password);
-          console.log("login_result Login",login_result)
+          console.log("Login_contrlr result from model",login_result)
           if(login_result.length >0){
-          return res.status(200).json({ success: true, message: 'login success' });
+            let resp={
+              email:login_result[0].email
+            }
+            console.log("Login_contrlr tockn_obj RESP:-",resp.email)
+            let token = jwt.sign(resp,"secret")
+          return res.status(200).json({ success: true, message: 'login success' ,token:token});
           }else{
-            return res.status(400).json({ success: false, message: 'wrong login data' });
+            
+            return res.status(400).json({ success: false, message: 'wrong login data'});
 
           }
           }

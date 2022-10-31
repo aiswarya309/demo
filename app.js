@@ -8,7 +8,7 @@ app.use((req, res, next) => {
     res.setHeader("X-Frame-Options", "ALLOWALL");
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Methods", "*");
-    res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept,authorization");
     next();
  }) 
 //controller CLIENT
