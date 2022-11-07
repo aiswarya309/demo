@@ -5,7 +5,7 @@ const  auth  = require('./route/auth')
 app.use(express.json())
 const config=require('./config')
 console.log("App.js")
-console.log("__dirname:-",__dirname)
+// console.log("__dirname:-",__dirname)
 
 app.use((req, res, next) => {
     res.setHeader("X-Frame-Options", "ALLOWALL");
@@ -19,11 +19,11 @@ app.use((req, res, next) => {
 // app.get('/',clientCon.client)
 // app.push('/')
 // console.log("node_env:=",config.node_env)
-console.log("host:=",config.host)
-console.log("user:=",config.user)
+// console.log("host:=",config.host)
+// console.log("user:=",config.user)
 // console.log("database:=",config.database)
 app.use('/slider',express.static(path.join(__dirname,'uploads')))
-console.log("__dirname:-",__dirname)
+// console.log("__dirname:-",__dirname)
 
 app.use('/auth', auth)
 app.listen(5000,function(){

@@ -11,13 +11,10 @@ async function aboutController(req,res){
         else{
             // console.log("about_cntrlr result false:-")
             res.status(500).json({success:false,message:"Data fetching not completed"})
-
         }
-
     }
     catch{
         res.status(500).json({success:false,message:"Data fetching not completed"})
-
     }
 }
 module.exports=aboutController
