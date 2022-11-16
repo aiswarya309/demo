@@ -3,18 +3,18 @@ async function feedbackPostController(req,res){
     console.log("feedback controller");
     try{
         // console.log("feedback contllr req:-",req);
-        console.log("feedback contllr req.body:-",req.body);
+        // console.log("feedback contllr req.body:-",req.body);
         const id=req.body.id
         const name=req.body.name
         const empName=req.body.empName
         const feedback=req.body.feedback
-        console.log("data F_controller:-",id,name,empName,feedback)
+        // console.log("data F_controller:-",id,name,empName,feedback)
         if((!id) || (!name) ||(!empName) || (!feedback)){
             res.status(200).json({success:false,message:"No data"})
         }else{
         const result= await feedbackPostModel(id,name,empName,feedback)
         if(result){
-            console.log("feedback controller IF");
+            // console.log("feedback controller IF");
             res.status(200).json({success:true,message:"Data posting completed"})
         }
         else{
@@ -30,6 +30,7 @@ async function feedbackPostController(req,res){
 }
 
 async function feedbackGetController(req,res){
+    // console.log("feedbackGetController")
 try{
     const getResult=await feedbackGetModel()
     if(getResult.length > 0){
