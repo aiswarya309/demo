@@ -9,9 +9,9 @@ const db=mysql.createConnection({
 function clientModel(){
     const client = db.query('SELECT * FROM client', (error, result) => {
         if (error) {
-            console.log("Error in model:",error)
+            // console.log("Error in model:",error)
         }
-        console.log("Result:",result)
+        // console.log("Result:",result)
 
     })
 }

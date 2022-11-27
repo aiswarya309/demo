@@ -38,7 +38,7 @@ async function signupController(req, res) {
 }
 
 async function LoginController(req, res) {
-  console.log('Login_contrlr IN');
+  // console.log('Login_contrlr IN');
   try {
     let email = req.body.email;
     let password = req.body.password;

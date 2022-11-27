@@ -1,9 +1,9 @@
 const {makeDb} = require("../db")
 console.log("model.")
 async function signupModel(email,password,name){
-console.log("model IN")
+// console.log("model IN")
   const db=makeDb()
-    console.log("signup model values ##",email,password,name)
+    // console.log("signup model values ##",email,password,name)
     try{
         // let signup_exist=await db.query("SELECT * FROM signup WHERE email=?",[email])
         // console.log("signup_exist",signup_exist.length);

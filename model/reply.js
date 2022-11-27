@@ -13,20 +13,26 @@ async function replyPostModel(id,reply,f_id){
 }
 
 async function replyViewModel(f_id,f_empId){
-    console.log("**********replyViewModel");
+    // console.log("**********replyViewModel");
     const db=makeDb()
-
 try{
-    const getView= await db.query("select f_id,reply from reply where f_id=? && emp_id=? order by id desc LIMIT 5",[f_id,f_empId])
-    console.log("getView reply:-",getView);
+    
+    const getView= await db.query("select reply from reply where f_id=? && emp_id=? order by id desc LIMIT 5",[f_id,f_empId])
+    // console.log("getView reply:-",getView);
     return getView
 }catch{
-    console.log("getView reply ERROR :-");
-    f_empId
+    // console.log("getView reply ERROR :-");
+    // f_empId
     return false
 }
 }
-// async function replyViewModel(){
-
-// }
-module.exports={replyPostModel,replyViewModel}
+async function replyGetModel(){
+    const db=makeDb()
+try{
+    const getReply= await db.query("select * from reply ")
+    return getReply
+}catch{
+    return false
+}
+}
+module.exports={replyPostModel,replyViewModel,replyGetModel}
