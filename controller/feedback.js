@@ -1,6 +1,6 @@
-const {feedbackPostModel,feedbackGetModel} =require('../model/feedback')
+const {feedbackPostModel,feedbackGetModel,feedbackEmpModel} =require('../model/feedback')
 async function feedbackPostController(req,res){
-    console.log("feedback controller");
+    // console.log("feedback controller");
     try{
         // console.log("feedback contllr req:-",req);
         // console.log("feedback contllr req.body:-",req.body);
@@ -31,6 +31,8 @@ async function feedbackPostController(req,res){
 
 async function feedbackGetController(req,res){
     // console.log("feedbackGetController")
+    const empId=req.query.empId
+    // console.log("empId",empId)
 try{
     const getResult=await feedbackGetModel()
     if(getResult.length > 0){
@@ -42,4 +44,26 @@ try{
     res.status(500).json({success:false,message:"Data posting server issue"})
 }
 }
-module.exports={feedbackPostController,feedbackGetController}
+async function feedbackEmpController(req,res){
+    try{
+        const empId=req.query.id
+        // console.log("empId",empId)
+        if((!empId)){
+            res.status(200).json({success:false,message:"No data"})
+
+        }else{
+            const personFeedback=await feedbackEmpModel(empId)
+            if(personFeedback){
+                res.status(200).json({success:true,message:"indivdual feedback fetched",result:personFeedback})
+            }
+            else{
+                res.status(500).json({success:false,message:" not completed"})
+            }
+        }
+    }
+    catch{
+        res.status(500).json({success:false,message:"server issue in feedbackEmpController"})
+
+    }
+}
+module.exports={feedbackPostController,feedbackGetController,feedbackEmpController}

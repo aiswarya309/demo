@@ -20,4 +20,15 @@ try{
     return false
 }
 }
-module.exports={feedbackPostModel,feedbackGetModel}
+async function feedbackEmpModel(empId){
+    const db=makeDb()
+    try{
+        const feedback=await db.query("SELECT * FROM feedback where emp_id=?",[empId])
+        // console.log("individul feedbk in MODel:-",feedback);
+        return feedback
+    }
+    catch{
+        return false
+    }
+}
+module.exports={feedbackPostModel,feedbackGetModel,feedbackEmpModel}

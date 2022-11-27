@@ -27,5 +27,5 @@ app.use('/slider',express.static(path.join(__dirname,'uploads')))
 
 app.use('/auth', auth)
 app.listen(5000,function(){
-    console.log("connecting to server")
+    // console.log("connecting to server")
 })
