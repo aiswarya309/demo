@@ -6,6 +6,7 @@ const {verifyToken} =require('../middleware/verifyMiddleware')
 const sliderController=require('../controller/slider')
 const {feedbackPostController,feedbackGetController,feedbackEmpController}=require('../controller/feedback')
 const {replyPostController,replyViewController,replyGetController}=require('../controller/reply')
+const {contactController}=require('../controller/contact')
 console.log("Route...")
 route.post('/signup',signupController)
 route.post('/login',LoginController)
@@ -17,5 +18,7 @@ route.post('/replyPost',replyPostController)
 route.get('/replyGet',verifyToken,replyGetController)
 route.get('/replyView',verifyToken,replyViewController)
 route.get('/feedbackEmpId',verifyToken,feedbackEmpController)
+route.post('/contact',contactController)
+
 
 module.exports=route
