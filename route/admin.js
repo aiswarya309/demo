@@ -6,7 +6,7 @@ const {UploadController,imageGetController,imageDeleteController,ImageUpdateCont
 const upload=require('../middleware/adminMiddle')
 const multer = require("multer");
 const {ContactGetController}=require('../Admin/controller/contact')
-const {employeeGetController,empUpdateController,empDeleteController}=require('../Admin/controller/employee')
+const {employeeGetController,empUpdateController,empDeleteController,empPostController}=require('../Admin/controller/employee')
 // const upload = multer({ dest: "./uploads" });
 route.get('/about',aboutController)
 route.post('/aboutPost',aboutPostController)
@@ -21,6 +21,7 @@ route.delete('/contactDelete',imageDeleteController)
 route.get('/employee',employeeGetController)
 route.patch('/empUpdate',empUpdateController)
 route.delete('/empDelete',empDeleteController)
+route.post('/empPost',empPostController)
 
-console.log("admin route")
+console.log("admin route...")
 module.exports=route

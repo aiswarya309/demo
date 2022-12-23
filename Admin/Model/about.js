@@ -1,5 +1,8 @@
 const {makeDb} = require('../../db')
+// const db=makeDb()
+
 async function aboutModel(){
+    console.log("about model")
     const db=makeDb()
     try{
         const aboutModel_result= await db.query("select * from homeabout ")

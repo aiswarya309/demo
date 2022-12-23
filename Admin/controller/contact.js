@@ -19,7 +19,7 @@ async function ContactGetController(req,res){
 async function ContactDeleteController(req, res) {
     console.log("imageGet Contrllr");
     try {
-      const id=req.query.id
+      const id=req.body.id
       console.log("Admin controller",id)
         if((!id)){
           return res.status(500).json({ success: false, message: ' Data Missing' });

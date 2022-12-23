@@ -32,7 +32,7 @@ function verifyToken(req,res,next){
         }
         else{
             // console.log("NEXT()")
-            req.decode=decode
+            // req.decode=decode
             next()
             // res.send(decode)
         }
