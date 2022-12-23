@@ -44,7 +44,7 @@ const storage = multer.diskStorage({
       // console.log("file name in multer",file);
     cb(null,file.originalname)
     //   cb(null,path.basename(file.originalname))
-      // console.log("path.extname(file.originalname)", path.basename(file.originalname))
+      // console.log("path.extname(file.originalname)", path.(file.originalname))
     },
   });
   // console.log("STORAGE",Storage);
@@ -54,7 +54,7 @@ const storage = multer.diskStorage({
 
 // const multer  = require('multer')
 // const storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
+//   destination: function (req, file, cbbasename) {
 //     cb(null, 'uploads')
 //   },
 //   filename: function (req, file, cb) {

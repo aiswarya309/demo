@@ -8,8 +8,9 @@ const {feedbackPostController,feedbackGetController,feedbackEmpController}=requi
 const {replyPostController,replyViewController,replyGetController}=require('../controller/reply')
 const {contactController}=require('../controller/contact')
 const upload=require('../middleware/adminMiddle')
+const {employeeGetController,empIdGetController}=require('../controller/employee')
 
-console.log("Route...")
+console.log("Route...auth")
 route.post('/signup',signupController)
 route.post('/login',LoginController)
 route.get('/about',verifyToken,aboutController)
@@ -21,5 +22,7 @@ route.get('/replyGet',verifyToken,replyGetController)
 route.get('/replyView',verifyToken,replyViewController)
 route.get('/feedbackEmpId',verifyToken,feedbackEmpController)
 route.post('/contact',upload.single('resume'),contactController)
+route.get('/employeeGet',employeeGetController)
+route.get('/empData',empIdGetController)
 
 module.exports=route

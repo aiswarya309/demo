@@ -1,4 +1,4 @@
-const {employeeGetModel,empUpdateModel,empDeleteModel} =require('../Model/employee')
+const {employeeGetModel,empUpdateModel,empDeleteModel,empPostModel} =require('../Model/employee')
 async function employeeGetController(req,res){
 try{
     const empGet= await employeeGetModel()
@@ -58,10 +58,10 @@ async function empDeleteController(req, res) {
         const imgDelete= await empDeleteModel(id);
         // console.log("imageGet Contrllr",imgDelete);
           if(imgDelete){
-            return res.status(200).json({ success: true, message: ' loading Success'});
+            return res.status(200).json({ success: true, message: ' Delete Success'});
           }
           else{
-            return res.status(500).json({ success: false, message: ' loading failed' });
+            return res.status(500).json({ success: false, message: ' Delete failed' });
           }
       }
   } catch (err) {
@@ -69,6 +69,41 @@ async function empDeleteController(req, res) {
 
   }
 }
+async function empPostController(req,res){
+  // console.log("Update employee controller",req.body);
+    try {
+      // console.log("inside try cntrllr")
+          const name=req.body.name
+          const email=req.body.email
+          const jobTitle=req.body.jobTitle
+          const country=req.body.country
+          const pincode=req.body.pincode
+          // console.log("name,email,jobTitle,country,pincode,id :-",name,email,jobTitle,country,pincode,id)
+  
+          if((!name) || (!email) || (!jobTitle) || (!country) || (!pincode)){
+            // console.log("missing data")
+            return res.status(500).json({ success: false, message: ' Data Missing' });
+  
+          }else{
+            // console.log("empUpdate Contrllr");
+            const empPost= await empPostModel(name,email,jobTitle,country,pincode)
+            // console.log("empUpdate",empUpdate);
+              if(empPost){
+                return res.status(200).json({ success: true, message: ' Posting Success'});
+              }
+              else{
+                return res.status(500).json({ success: false, message: ' Posting failed' });
+              }
+          }
+      } catch (err) {
+        // console.log("insie  catch contrllr");
+        return res.status(500).json({ success: false, message: 'server issue in Posting' });
+    
+      }
+}
 module.exports={
-    employeeGetController,empUpdateController,empDeleteController
+    employeeGetController,
+    empUpdateController,
+    empDeleteController,
+    empPostController
 }

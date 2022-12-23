@@ -1,17 +1,20 @@
 const {aboutModel,aboutPostModel,aboutDeleteModel,aboutUpdateModel}=require('../../Admin/Model/about')
 async function aboutController(req,res){
-    // console.log("Admin controller")
+    console.log("About controller")
     try{
         const result= await aboutModel()
         // console.log("Admin controller try",result)
         if(result){
-            res.status(200).json({success:true,message:"Data fetching completed",result:result})
+            console.log("about try")
+            // res.status(500).json({success:'dummy',message:"#########",result:result})
+            return res.status(200).json({success:true,message:"Data fetching completed",result:result})
         }
         else{
             res.status(500).json({success:false,message:"Data fetching not completed"})
         }
     }
     catch{
+        console.log("about catch")
         res.status(500).json({success:false,message:"Server issue"})
     }
 }

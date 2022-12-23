@@ -3,14 +3,9 @@ const app =express()
 const path=require('path')
 const  auth  = require('./route/auth')
 const admin=require('./route/admin')
-app.use(express.json())
 const config=require('./config')
-// const multer  = require('multer')
-// const path=require('path')
-// const upload = multer()
+app.use(express.json())
 console.log("App.js")
-// console.log("__dirname:-",__dirname)
-
 app.use((req, res, next) => {
     res.setHeader("X-Frame-Options", "ALLOWALL");
     res.setHeader("Access-Control-Allow-Origin", "*");
